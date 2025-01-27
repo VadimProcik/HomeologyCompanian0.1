@@ -8,6 +8,7 @@ import {
   TextInput,
   Button,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const AdminHomePage = () => {
   const [jobs, setJobs] = useState([
@@ -18,6 +19,8 @@ const AdminHomePage = () => {
 
   const [newJobName, setNewJobName] = useState('');
   const [newJobLocation, setNewJobLocation] = useState('');
+
+  const navigation = useNavigation();
 
   const addNewJob = () => {
     if (newJobName && newJobLocation) {
@@ -32,8 +35,12 @@ const AdminHomePage = () => {
     }
   };
 
+  const handleJobPress = (job) => {
+    navigation.navigate('ProjectPages', { job });
+  };
+
   const renderJobItem = ({ item }) => (
-    <TouchableOpacity style={styles.jobItem}>
+    <TouchableOpacity style={styles.jobItem} onPress={() => handleJobPress(item)}>
       <Text style={styles.jobText}>{item.name}, {item.location}</Text>
     </TouchableOpacity>
   );
@@ -89,11 +96,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   jobItem: {
-    padding: 15,
+    padding: 20,
     backgroundColor: '#fff',
     borderRadius: 10,
-    marginBottom: 10,
+    marginBottom: 15,
     elevation: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   jobText: {
     fontSize: 18,
