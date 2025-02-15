@@ -62,3 +62,6 @@ const styles = StyleSheet.create({
 });
 
 export default LoginScreen;
+
+
+//https://youtu.be/0_mRcoypaKk?si=H7TtesryivM2w2g1
